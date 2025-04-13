@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "c48d8315-e7ae-45cc-bb74-ba5f89981e0c",
+		"name": "ims-backend",
+		"description": "All API's related to IMS BACKEND APPLICATION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30098410"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"service@hdfcbank.com\",\n    \"password\" :\"Welcome@123\",\n    \"entityName\" : \"HDFC Bank PVT LTD\",\n    \"userType\" : \"BANK\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/user/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"save"
+							]
+						},
+						"description": "SAVE USERS"
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						},
+						"description": "FETCH ALL USERS"
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/user?entityName=HDFC Bank PVT LTD",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							],
+							"query": [
+								{
+									"key": "entityName",
+									"value": "HDFC Bank PVT LTD"
+								}
+							]
+						},
+						"description": "FETCH PARTICULAR USER"
+					},
+					"response": []
+				}
+			],
+			"description": "User Related API'S"
+		},
+		{
+			"name": "department",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n    \"name\":\"BPO SERVICES\",\n    \"description\":\"BPO Services \"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/department/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"department",
+								"save"
+							]
+						},
+						"description": "SAVE DEPARTMENT"
+					},
+					"response": []
+				}
+			],
+			"description": "ALL API'S related to DEPARTMENTS"
+		},
+		{
+			"name": "employee",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department\":\"BPO SERVICES\",\n    \"firstName\" :\"Praneeth\",\n    \"lastName\" :\"Jagirdhar\",\n    \"email\" :\"Praneeth.Jagirdhar@gmail.com\",\n    \"password\":\"welcome@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/employee/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employee",
+								"save"
+							]
+						},
+						"description": "SAVE EMPLOYEE"
+					},
+					"response": []
+				},
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/employee",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employee"
+							]
+						},
+						"description": "FETCHES ALL EMPLOYEES"
+					},
+					"response": []
+				},
+				{
+					"name": "employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/employee?email=jagirdharnaveen69@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"employee"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jagirdharnaveen69@gmail.com"
+								}
+							]
+						},
+						"description": "FETCHES PARTICULAR EMPLOYEE"
+					},
+					"response": []
+				}
+			],
+			"description": "ALL API's RELATED TO EMPLOYEE"
+		},
+		{
+			"name": "ticket",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" :\"Request Access for Application\",\n    \"description\" : \"Requesting access to tools like mobile/sim/landline\",\n    \"department\" : \"BPO SERVICES\",\n    \"entityName\" : \"HDFC Bank PVT LTD\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/ticket/save",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ticket",
+								"save"
+							]
+						},
+						"description": "SAVE TICKETS & ASSIGN TO PARTICULAR EMPLOYEE of DEPARTMENT"
+					},
+					"response": []
+				},
+				{
+					"name": "user-tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/ticket/user/HDFC Bank PVT LTD",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ticket",
+								"user",
+								"HDFC Bank PVT LTD"
+							]
+						},
+						"description": "FETCHES ALL TICKETS RAISED BY USER"
+					},
+					"response": []
+				},
+				{
+					"name": "employee-tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/v1/ticket/employee/Praneeth.Jagirdhar@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"ticket",
+								"employee",
+								"Praneeth.Jagirdhar@gmail.com"
+							]
+						},
+						"description": "FETCHES ALL TICKETS RAISED BY EMPLOYEE"
+					},
+					"response": []
+				}
+			],
+			"description": "ALL API's RELATED TO TICKET"
+		}
+	]
+}
