@@ -1,7 +1,6 @@
 package in.ikcon.ims.controller;
 
-import java.util.Map;
-
+import in.ikcon.ims.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import in.ikcon.ims.services.UserService;
+import java.util.Map;
 
 @RequestMapping(path = "/api/v1/user" , produces = {"application/json"})
 @RestController
