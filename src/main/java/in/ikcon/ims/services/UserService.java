@@ -6,7 +6,9 @@ import in.ikcon.ims.entities.Users;
 import java.util.List;
 import java.util.Map;
 
-public interface UserService {
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+public interface UserService extends UserDetailsService {
 
     UserDTO getUser(String entityName);
 

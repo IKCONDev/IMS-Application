@@ -6,6 +6,9 @@ import in.ikcon.ims.enums.UserType;
 import in.ikcon.ims.mapper.UserMapper;
 import in.ikcon.ims.repository.UserRepository;
 import in.ikcon.ims.services.UserService;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,5 +52,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEntityName(entityName)
                 .orElseThrow(() -> new RuntimeException("user does not exists with entity:"+entityName));
     }
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return null;
+	}
 
 }
