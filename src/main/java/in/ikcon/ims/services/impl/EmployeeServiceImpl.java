@@ -6,10 +6,14 @@ import in.ikcon.ims.mapper.EmployeeMapper;
 import in.ikcon.ims.repository.EmployeeRepository;
 import in.ikcon.ims.services.DepartmentService;
 import in.ikcon.ims.services.EmployeeService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -18,11 +22,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final DepartmentService departmentService;
+    private final PasswordEncoder passwordEncoder;
 
     public EmployeeServiceImpl(EmployeeRepository employeeRepository,
-                               DepartmentService departmentService) {
+                               DepartmentService departmentService, PasswordEncoder passwordEncoder) {
         this.employeeRepository = employeeRepository;
         this.departmentService = departmentService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -44,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         newEmployee.setFirstName(employeeRequest.get("firstName"));
         newEmployee.setLastName(employeeRequest.get("lastName"));
         newEmployee.setEmail(employeeRequest.get("email"));
-        newEmployee.setPassword(employeeRequest.get("password"));
+        newEmployee.setPassword(passwordEncoder.encode(employeeRequest.get("password")));
         newEmployee.setDepartments(departmentService.getDepartmentInternal(employeeRequest.get("department")));
         employeeRepository.save(newEmployee);
     }
@@ -66,5 +72,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employees getEmployeeEntity(String email) {
         return employeeRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("No employee found with email:"+email));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Employees> employees = employeeRepository.findByEmail(username);
+        return (UserDetails) employees.get();
     }
 }

@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
 
     UserDTO getUser(String entityName);
 
@@ -17,4 +17,6 @@ public interface UserService extends UserDetailsService {
     void save(Map<String,String> userRequest);
 
     Users getUserInternal(String entityName);
+
+    Users getUserByEmail(String username);
 }

@@ -9,6 +9,7 @@ import in.ikcon.ims.services.UserService;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +20,11 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -42,7 +45,7 @@ public class UserServiceImpl implements UserService {
         Users newUsers = new Users();
         newUsers.setUserType(UserType.valueOf(userRequest.get("userType")));
         newUsers.setEmail(userRequest.get("email"));
-        newUsers.setPassword(userRequest.get("password"));
+        newUsers.setPassword(passwordEncoder.encode(userRequest.get("password")));
         newUsers.setEntityName(userRequest.get("entityName"));
         userRepository.save(newUsers);
     }
@@ -53,9 +56,9 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new RuntimeException("user does not exists with entity:"+entityName));
     }
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return null;
-	}
-
+    @Override
+    public Users getUserByEmail(String username) {
+        return userRepository.findByEmail(username)
+                .orElse(new Users());
+    }
 }

@@ -5,6 +5,8 @@ server:
   port: 8076
   max-http-header-size: 800KB
 spring:
+  main:
+    allow-circular-references: true
   application:
     name: IMS-APPLICATION
   devtools:
@@ -56,7 +58,7 @@ spring:
       on-profile: dev
   datasource:
     driver-class-name: org.postgresql.Driver
-    password: postgres
+    password: manager
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=imsdb
     username: postgres
     hikari:
@@ -65,7 +67,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
   mail:
     host: smtp.gmail.com

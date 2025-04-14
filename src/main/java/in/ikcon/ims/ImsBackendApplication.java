@@ -22,14 +22,4 @@ public class ImsBackendApplication {
 		SpringApplication.run(ImsBackendApplication.class, args);
 	}
 
-	@Bean
-	BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
-	@Bean
-	RestTemplate getRestTemplate() {
-		return new RestTemplate();
-	}
-
 }
