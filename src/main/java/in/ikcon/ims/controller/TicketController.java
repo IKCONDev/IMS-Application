@@ -41,6 +41,7 @@ public class TicketController {
 
     @PutMapping(path = "/{ticketNumber}")
     public ResponseEntity<?> approveTicket(@PathVariable String ticketNumber) {
-        return new ResponseEntity<>(ticketService.approveTicket(ticketNumber),HttpStatus.OK);
+        ticketService.approveTicket(ticketNumber);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
