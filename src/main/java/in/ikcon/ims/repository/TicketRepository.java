@@ -11,4 +11,6 @@ public interface TicketRepository extends JpaRepository<Tickets,Long> {
 
     List<Tickets> findByCreator(Users users);
     List<Tickets> findByApprover(Employees employees);
+
+    Tickets findByTicketNo(String ticketNumber);
 }

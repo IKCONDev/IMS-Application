@@ -12,4 +12,6 @@ public interface TicketService {
     List<TicketDTO> getUserTickets(String entityName);
 
     List<TicketDTO> getEmployeeTickets(String email);
+
+    void approveTicket(String ticketNumber);
 }

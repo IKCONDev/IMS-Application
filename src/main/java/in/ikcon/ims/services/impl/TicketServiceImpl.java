@@ -4,6 +4,7 @@ import in.ikcon.ims.dtos.TicketDTO;
 import in.ikcon.ims.entities.Employees;
 import in.ikcon.ims.entities.Tickets;
 import in.ikcon.ims.entities.Users;
+import in.ikcon.ims.enums.Status;
 import in.ikcon.ims.mapper.TicketMapper;
 import in.ikcon.ims.repository.TicketRepository;
 import in.ikcon.ims.services.EmployeeService;
@@ -53,6 +54,13 @@ public class TicketServiceImpl implements TicketService {
         Employees employees = employeeService.getEmployeeEntity(email);
         return ticketRepository.findByApprover(employees).stream()
                 .map(TicketMapper::map).collect(Collectors.toList());
+    }
+
+    @Override
+    public void approveTicket(String ticketNumber) {
+        Tickets tickets = ticketRepository.findByTicketNo(ticketNumber);
+        tickets.setStatus(Status.APPROVED);
+        ticketRepository.save(tickets);
     }
 
     private String generateRandom() {

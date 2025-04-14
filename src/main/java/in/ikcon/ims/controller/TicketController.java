@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,5 +37,10 @@ public class TicketController {
     @GetMapping(path = "/employee/{email}")
     public ResponseEntity<?> getEmployeeTickets(@PathVariable String email) {
         return new ResponseEntity<>(ticketService.getEmployeeTickets(email),HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/{ticketNumber}")
+    public ResponseEntity<?> approveTicket(@PathVariable String ticketNumber) {
+        return new ResponseEntity<>(ticketService.approveTicket(ticketNumber),HttpStatus.OK);
     }
 }
